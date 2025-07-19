@@ -1,85 +1,94 @@
 # Facial Emotion Detection using CNN and OpenCV
 
-This project is a real-time facial emotion recognition system using a Convolutional Neural Network (CNN) trained on the FER-2013 dataset. It detects faces from webcam input and classifies them into seven emotions: Angry, Disgust, Fear, Happy, Sad, Surprise, and Neutral.
+This project implements a real-time facial emotion recognition system using a Convolutional Neural Network (CNN), trained on the FER-2013 dataset. It includes scripts to train the model and detect emotions in real time using your webcam and OpenCV.
 
-## Features
+---
 
-- Real-time face detection using Haarcascade.
-- Emotion classification using a custom-built CNN.
-- Trained on FER-2013 dataset with grayscale images (48x48).
-- Achieves around 65% validation accuracy.
-- Webcam integration for real-time predictions.
+## 🧠 Model Summary
 
-## Dataset
+- Trained using FER-2013 dataset (grayscale 48x48 face images)
+- CNN with Conv2D, MaxPooling, Dropout, and Dense layers
+- Predicts one of 7 facial expressions: Angry, Disgust, Fear, Happy, Sad, Surprise, Neutral
 
-- **FER-2013** dataset: Available as a CSV file (`fer2013.csv`).
-- Each row contains:
-  - `emotion`: Integer label (0–6)
-  - `pixels`: Space-separated string representing 48x48 grayscale image.
+---
 
-## Model Architecture
+## 🗂️ Project Structure
 
-- 2 Convolutional Layers (ReLU)
-- 2 MaxPooling Layers
-- Dropout Layers for regularization
-- Flatten and Dense Layers
-- Softmax output for 7 emotion classes
+```
+├── train_and_save_model.py         # Train CNN on FER-2013 and save model
+├── emotion_detection.py            # Real-time webcam-based emotion detector
+├── fer2013.csv                     # Dataset (must be downloaded)
+├── haarcascade_frontalface_default.xml # Haarcascade file (download separately)
+├── emotion_model.h5                # Trained model (output from training)
+└── README.md
+```
 
-## Tech Stack
+---
 
-- Python
-- TensorFlow / Keras
-- OpenCV
-- NumPy, Pandas, Matplotlib
+## ⚙️ Requirements
 
-## How to Run
+Install necessary dependencies using pip:
 
-1. Clone the repo:
+```bash
+pip install tensorflow numpy pandas scikit-learn opencv-python
+```
 
-   ```bash
-   git clone https://github.com/your-username/facial-emotion-detection.git
-   cd facial-emotion-detection
-   ```
+---
 
-2. Install dependencies:
+## 📥 Dataset & Haarcascade
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+- Download FER-2013: [Kaggle FER-2013 Dataset](https://www.kaggle.com/datasets/msambare/fer2013)
+- Download Haarcascade: [haarcascade_frontalface_default.xml](https://github.com/opencv/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml)
 
-3. Ensure the following files are present:
-   - `fer2013.csv`
-   - `haarcascade_frontalface_default.xml`
+Place both files in the same directory as the scripts.
 
-4. Run the project:
+---
 
-   ```bash
-   python emotion_detection.py
-   ```
+## 🚀 How to Run
 
-5. Press `q` to exit the webcam window.
+### 🧪 1. Train the Model
 
-## Output
+```bash
+python train_and_save_model.py
+```
+- Trains a CNN model on `fer2013.csv`
+- Saves model as `emotion_model.h5`
 
-- Live camera feed with detected faces and predicted emotion label.
-- Works for multiple people simultaneously.
+### 🎥 2. Real-Time Emotion Detection
 
-## Accuracy
+```bash
+python emotion_detection.py
+```
+- Starts webcam
+- Detects and displays emotions in real-time using Haarcascade and trained model
 
-- ~65% validation accuracy on the FER-2013 dataset.
-- Can be improved with better architecture and data augmentation.
+---
 
-## Applications
+## 🧠 Emotion Labels
 
-- Mental health analysis
-- User feedback detection
-- Smart classrooms
-- Customer experience tracking
-- Human-computer interaction
+The model predicts one of the following:
 
-## Future Scope
+```
+['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
+```
 
-- Integrate pre-trained models like VGG or ResNet
-- Add data augmentation
-- Streamlit/Flask web interface
-- Deploy as mobile or browser-based application
+---
+
+## 📊 Performance
+
+- Accuracy: ~65–70% (can improve with data augmentation or deeper model)
+- Live prediction speed: ~20 FPS (depends on system hardware)
+
+---
+
+## 💡 Future Enhancements
+
+- Add emotion logging or analytics
+- Deploy as a web app with Flask or Streamlit
+- Improve accuracy with data augmentation and deeper architectures
+
+---
+
+## 📬 Contact
+
+For suggestions, improvements, or questions — feel free to fork this repo or open an issue!
